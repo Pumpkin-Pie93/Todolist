@@ -1,8 +1,55 @@
+body {
+  background-color: #ffb3b3;
+display: flex;
+  justify-content: center;
+
+
+}
+
 .App {
   padding: 30px;
   display: flex;
+  margin: 20px;
+
+  background-color: transparent ;
+/*#ffb3b3*/
+  width: fit-content;
+  border-radius: 50px;
+  box-shadow:  20px 20px 60px #d99898,
+  -20px -20px 60px #ffcece;
+
+  & h3 {
+    color: #993b5d;
+    font-family: "Oleo Script",sans-serif;
+    font-size: 1.5rem;
+  }
+  & button {
+   background-color: transparent;
+    border: 1px solid rgba(217, 152, 152, 0);
+    margin: 3px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    box-shadow:  2px 1px 3px 0px #876d6d29,
+    inset -14px 7px 15px 0px #ffd9d987;
+    color: #993b5d;
+  }
 }
 
+
 .App > div {
-  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  align-items: center;
+  justify-content: center;
+
+
+
+
+}
+div input {
+  background-color: rgb(249 230 233 / 59%);
+  border: none;
+  border-radius: 4px;
+  color: #993b5d;
 }
