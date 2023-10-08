@@ -57,6 +57,7 @@ function App() {
                       tasks={FilteredTasksForRender}
                       addTask={addTask}
                       checkedTask={checkedTask}
+                      filter={filter}
             />
 
         </div>

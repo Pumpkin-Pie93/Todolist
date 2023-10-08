@@ -7,6 +7,7 @@ type TodoListPropsType = {
     changeFilter: (nextFilterValue: FilterValueType) => void
     addTask: (title: string) => void
     checkedTask:(taskId: string, checked: boolean) => void
+    filter: FilterValueType
 }
 
 export type TaskType = {
@@ -25,7 +26,8 @@ const TodoList: FC<TodoListPropsType> = (
         removeTask,
         changeFilter,
         addTask,
-        checkedTask
+        checkedTask,
+        filter
     }) => {
 
     const listItems: Array<JSX.Element> = tasks.map((t) => {
@@ -35,7 +37,7 @@ const TodoList: FC<TodoListPropsType> = (
             checkedTask(t.id, CheckedValue)
         }
         return (
-            <li key={t.id}>
+            <li key={t.id} className={t.isDone? 'is-done': ''}>
                 <input type="checkbox"
                        checked={t.isDone}
                        onChange={onChangeHandler}
@@ -94,9 +96,15 @@ const TodoList: FC<TodoListPropsType> = (
             </div>
             {tasksList}
             <div>
-                <button onClick={onAllClickHandler}>All</button>
-                <button onClick={onActiveClickHandler}>Active</button>
-                <button onClick={onCompletedClickHandler}>Completed</button>
+                <button onClick={onAllClickHandler}
+                        className={filter === 'all'?'active-filter': ''}>
+                    All</button>
+                <button onClick={onActiveClickHandler}
+                        className={filter === 'active'? 'active-filter': ''}>
+                    Active</button>
+                <button onClick={onCompletedClickHandler}
+                        className={filter === 'completed'? 'active-filter': ''}>
+                    Completed</button>
             </div>
         </div>
     )

@@ -32,6 +32,8 @@ body {
         box-shadow: 2px 1px 3px 0px #876d6d29,
         inset -14px 7px 15px 0px #ffd9d987;
         color: #993b5d;
+
+
     }
 }
 
@@ -42,8 +44,15 @@ body {
     margin: 5px;
     align-items: center;
     justify-content: center;
+    color: #993b5d;
 
-
+    .active-filter {
+        background-color: transparent;
+        border: 1px solid #993b5d;
+        box-shadow: 2px 1px 3px 0px #876d6d29,
+        inset -14px 7px 15px 0px #ffd9d987;
+        color: #993b5d;
+    }
 }
 
 div input {
@@ -60,3 +69,9 @@ div input {
 .error-message {
     color: red;
 }
+
+.is-done {
+    opacity: 0.5;
+}
+
+
