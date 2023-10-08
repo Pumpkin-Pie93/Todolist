@@ -22,7 +22,6 @@ function App() {
         }
         setTasks(nextState)
     }
-
     const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all')
     const getFilteredTasksForRender = (allTasks: Array<TaskType>, filterValue: FilterValueType): Array<TaskType> => {
         switch (filterValue) {
@@ -34,19 +33,22 @@ function App() {
                 return allTasks
         }
     }
-
     const FilteredTasksForRender: Array<TaskType> = getFilteredTasksForRender(tasks, filter)
-
     const changeFilter = (nextFilterValue: FilterValueType) => {
         setFilter(nextFilterValue)
     }
-
     const addTask = (title: string) => {
         let newTask = {id: v1(), title: title, isDone: false};
         let newTasks = [newTask, ...tasks]
         setTasks(newTasks)
     }
-
+    const checkedTask = (taskId: string, checked: boolean) => {
+        let changeCheckedTask = tasks.find( t => t.id === taskId)
+        if (changeCheckedTask) {
+            changeCheckedTask.isDone = checked
+            setTasks([...tasks])
+        }
+    }
     return (
         <div className="App">
             <TodoList changeFilter={changeFilter}
@@ -54,6 +56,7 @@ function App() {
                       title='What to lern'
                       tasks={FilteredTasksForRender}
                       addTask={addTask}
+                      checkedTask={checkedTask}
             />
 
         </div>
