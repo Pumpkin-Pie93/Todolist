@@ -49,6 +49,7 @@ function App() {
             setTasks([...tasks])
         }
     }
+
     return (
         <div className="App">
             <TodoList changeFilter={changeFilter}
@@ -59,7 +60,38 @@ function App() {
                       checkedTask={checkedTask}
                       filter={filter}
             />
-
+            <TodoList changeFilter={changeFilter}
+                      removeTask={removeTask}
+                      title='What to lern'
+                      tasks={FilteredTasksForRender}
+                      addTask={addTask}
+                      checkedTask={checkedTask}
+                      filter={filter}
+            />
+            <TodoList changeFilter={changeFilter}
+                      removeTask={removeTask}
+                      title='What to lern'
+                      tasks={FilteredTasksForRender}
+                      addTask={addTask}
+                      checkedTask={checkedTask}
+                      filter={filter}
+            />
+            <TodoList changeFilter={changeFilter}
+                      removeTask={removeTask}
+                      title='What to lern'
+                      tasks={FilteredTasksForRender}
+                      addTask={addTask}
+                      checkedTask={checkedTask}
+                      filter={filter}
+            />
+            <TodoList changeFilter={changeFilter}
+                      removeTask={removeTask}
+                      title='What to lern'
+                      tasks={FilteredTasksForRender}
+                      addTask={addTask}
+                      checkedTask={checkedTask}
+                      filter={filter}
+            />
         </div>
     );
 }

@@ -1,10 +1,17 @@
+
 body {
     /*background-color: #ffb3b3;*/
     background-color: #ffd4d426;
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
 
+}
 
+input:focus {
+    outline: none;
+    border: 1px solid #d99898;
+    background-color: #ffd4d426;
 }
 
 .App {
@@ -16,6 +23,9 @@ body {
     border-radius: 50px;
     box-shadow: 20px 20px 60px #d99898,
     -20px -20px 60px #ffcece;
+    flex-wrap: wrap;
+
+    /*position: relative;*/
 
     & h3 {
         color: #993b5d;
@@ -37,30 +47,57 @@ body {
     }
 }
 
+img {
+    max-width: 50px;
+    max-height: 40px;
+    position: relative;
+    top: 62px;
+    right: 80px;
+}
 
 .App > div {
     display: flex;
     flex-direction: column;
-    margin: 5px;
+    margin: 15px;
     align-items: center;
     justify-content: center;
     color: #993b5d;
-
-    .active-filter {
-        background-color: transparent;
-        border: 1px solid #993b5d;
-        box-shadow: 2px 1px 3px 0px #876d6d29,
-        inset -14px 7px 15px 0px #ffd9d987;
-        color: #993b5d;
+    padding: 30px;
+    background-color: transparent;
+    width: fit-content;
+    border-radius: 50px;
+    border: 5px solid #d99898;
+    box-shadow: -4px -3px 0px 0px #ffcece, 0 0 11px 0 #ffd4d4;
+    background-image: url("images/strawberry.svg");
+    background-repeat: repeat-x;
+    background-position-x: 4px;
+    ::selection {
+        background-color: #d99898;
+        color: #ffd4d4;
     }
+
 }
 
+.todolist {
+    margin-left: 10px;
+}
+
+.active-filter {
+    background-color: transparent;
+    border: 1px solid #993b5d;
+    box-shadow: 2px 1px 3px 0px #876d6d29,
+    inset -14px 7px 15px 0px #ffd9d987;
+    color: #993b5d;
+}
+
+
 div input {
-    background-color: rgb(249 230 233 / 59%);
+    background-color: #ffd4d4;
     border: none;
     border-radius: 4px;
     color: #993b5d;
 }
+
 
 .error {
     border: red 1px solid;

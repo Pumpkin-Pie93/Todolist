@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, FC, useState} from 'react';
+import image from './images/list.svg'
 
 type TodoListPropsType = {
     title: string
@@ -6,7 +7,7 @@ type TodoListPropsType = {
     removeTask: (tasksId: string) => void
     changeFilter: (nextFilterValue: FilterValueType) => void
     addTask: (title: string) => void
-    checkedTask:(taskId: string, checked: boolean) => void
+    checkedTask: (taskId: string, checked: boolean) => void
     filter: FilterValueType
 }
 
@@ -37,7 +38,7 @@ const TodoList: FC<TodoListPropsType> = (
             checkedTask(t.id, CheckedValue)
         }
         return (
-            <li key={t.id} className={t.isDone? 'is-done': ''}>
+            <li key={t.id} className={t.isDone ? 'is-done' : ''}>
                 <input type="checkbox"
                        checked={t.isDone}
                        onChange={onChangeHandler}
@@ -53,13 +54,13 @@ const TodoList: FC<TodoListPropsType> = (
         ? <ul>{listItems}</ul>
         : <span>Your tasksList is empty</span>
     const addTitleForTask = () => {
-        if(inputValue.trim() !== ''){
+        if (inputValue.trim() !== '') {
             addTask(inputValue.trim())
             setInputValue('')
         } else {
             setError(true)
         }
-            }
+    }
     const onClickHandler = () => {
         addTitleForTask()
     }
@@ -84,12 +85,13 @@ const TodoList: FC<TodoListPropsType> = (
     }
     return (
         <div className="todolist">
+            <img src={image}/>
             <h3>{title}</h3>
             <div>
                 <input onChange={onchangeHandler}
                        value={inputValue}
                        onKeyDown={onKeyDownHandler}
-                       className={error? 'error': ''}
+                       className={error ? 'error' : ''}
                 />
                 <button onClick={onClickHandler}>+</button>
                 {error && <div className={'error-message'}>Enter correct title</div>}
@@ -97,14 +99,17 @@ const TodoList: FC<TodoListPropsType> = (
             {tasksList}
             <div>
                 <button onClick={onAllClickHandler}
-                        className={filter === 'all'?'active-filter': ''}>
-                    All</button>
+                        className={filter === 'all' ? 'active-filter' : ''}>
+                    All
+                </button>
                 <button onClick={onActiveClickHandler}
-                        className={filter === 'active'? 'active-filter': ''}>
-                    Active</button>
+                        className={filter === 'active' ? 'active-filter' : ''}>
+                    Active
+                </button>
                 <button onClick={onCompletedClickHandler}
-                        className={filter === 'completed'? 'active-filter': ''}>
-                    Completed</button>
+                        className={filter === 'completed' ? 'active-filter' : ''}>
+                    Completed
+                </button>
             </div>
         </div>
     )
