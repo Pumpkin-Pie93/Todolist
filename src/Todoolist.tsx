@@ -1,14 +1,15 @@
-import React, {FC} from 'react';
+import React, {ChangeEvent, FC, useState} from 'react';
 
 type TodoListPropsType = {
     title: string
     tasks: Array<TaskType>
-    removeTask: (tasksId: number) => void
+    removeTask: (tasksId: string) => void
     changeFilter: (nextFilterValue: FilterValueType) => void
+    addTask: (title: string) => void
 }
 
 export type TaskType = {
-    id: number
+    id: string
     title: string
     isDone: boolean
 }
@@ -17,12 +18,12 @@ export type FilterValueType = 'all' | 'active' | 'completed'
 
 
 const TodoList: FC<TodoListPropsType> = (
-
     {
         title,
         tasks,
         removeTask,
-        changeFilter
+        changeFilter,
+        addTask
     }) => {
 
     const listItems: Array<JSX.Element> = tasks.map((t) => {
@@ -40,12 +41,24 @@ const TodoList: FC<TodoListPropsType> = (
         ? <ul>{listItems}</ul>
         : <span>Your tasksList is empty</span>
 
+    const onClikcHandler = ()=> {
+        addTask(inputValue)
+        setInputValue('')
+    }
+
+    const [inputValue, setInputValue] = useState('')
+    const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+
+        setInputValue(e.currentTarget.value)
+        console.log(inputValue)
+    }
+
     return (
         <div className="todolist">
             <h3>{title}</h3>
             <div>
-                <input/>
-                <button>+</button>
+                <input onChange={onchangeHandler} value={inputValue}/>
+                <button onClick={onClikcHandler}>+</button>
             </div>
             {tasksList}
             <div>
