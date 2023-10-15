@@ -1,13 +1,10 @@
 
 body {
-    /*background-color: #ffb3b3;*/
     background-color: #ffd4d426;
     display: flex;
     justify-content: center;
     box-sizing: border-box;
-
 }
-
 input:focus {
     outline: none;
     border: 1px solid #d99898;
@@ -17,7 +14,8 @@ input:focus {
 .App {
     padding: 30px;
     display: flex;
-    margin: 20px;
+    /*flex-direction: column;*/
+    margin: 100px auto;
     background-color: transparent;
     width: fit-content;
     border-radius: 50px;
@@ -55,41 +53,35 @@ img {
     right: 80px;
 }
 
-.App > div {
+.todolistWrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
     margin: 15px;
-    align-items: center;
-    justify-content: center;
     color: #993b5d;
-    padding: 30px;
+    padding: 62px;
     background-color: transparent;
     width: fit-content;
     border-radius: 50px;
     border: 5px solid #d99898;
-    box-shadow: -4px -3px 0px 0px #ffcece, 0 0 11px 0 #ffd4d4;
+    box-shadow: -4px -3px 0 0 #ffcece, 0 0 11px 0 #ffd4d4;
     background-image: url("images/strawberry.svg");
     background-repeat: repeat-x;
     background-position-x: 4px;
+
     ::selection {
         background-color: #d99898;
         color: #ffd4d4;
     }
 
+  & li {
+       list-style: none;
+   }
 }
-
-.todolist {
-    margin-left: 10px;
-}
-
-.active-filter {
-    background-color: transparent;
-    border: 1px solid #993b5d;
-    box-shadow: 2px 1px 3px 0px #876d6d29,
-    inset -14px 7px 15px 0px #ffd9d987;
-    color: #993b5d;
-}
-
 
 div input {
     background-color: #ffd4d4;
@@ -97,16 +89,22 @@ div input {
     border-radius: 4px;
     color: #993b5d;
 }
-
-
+.todolist {
+    margin-left: 10px;
+}
+.active-filter {
+    background-color: transparent;
+    border: 1px solid #993b5d;
+    box-shadow: 2px 1px 3px 0 #876d6d29,
+    inset -14px 7px 15px 0 #ffd9d987;
+    color: #993b5d;
+}
 .error {
     border: red 1px solid;
 }
-
 .error-message {
     color: red;
 }
-
 .is-done {
     opacity: 0.5;
 }
