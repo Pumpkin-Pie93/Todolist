@@ -92,7 +92,8 @@ function App() {
                 ...tasks,
                 [todolistId]: {
                     ...tasks[todolistId],
-                    data: tasks[todolistId].data.map(el => el.id === taskId ? {...el, isDone: checked} : el)
+                    data: tasks[todolistId].data.map(
+                        el => el.id === taskId ? {...el, isDone: checked} : el)
                 }
             })
         }
@@ -111,17 +112,13 @@ function App() {
         setTasks({...tasks,
         [newTodoList.id]: {data:[], filter: 'all'} })
     }
-    // function addTodoList(title: string) {
-    //     const newTodoId = v1()
-    //     const newTodo: TodolistsType = {
-    //         id: newTodoId,
-    //         filter: 'all',
-    //         title: title
-    //     }
-    //     setTodolists([...todolists, newTodo])
-    //     setTasks({...tasks, [newTodo.id]: []})
-    // }
-
+    const changeTodolistTitle = (todolistId: string,title: string) => {
+        setTodolists(todolists.map( el => el.id === todolistId? {...el, title}: el))
+        console.log(tasks[todolistId].data)
+    }
+    const changeTaskTitle = (todolistId: string,taskId: string,title: string) => {
+        setTasks({...tasks, [todolistId]: {...tasks[todolistId], data: tasks[todolistId].data.map(el => el.id === taskId? {...el, title}: el)}})
+    }
 
     let mappedList = todolists.map(el => {
         return (
@@ -136,6 +133,8 @@ function App() {
                 checkedTask={checkedTask}
                 filter={tasks[el.id].filter}
                 removeTodoList={removeTodoList}
+                changeTodolistTitle={changeTodolistTitle}
+                changeTaskTitle={changeTaskTitle}
             />
         )
     })
