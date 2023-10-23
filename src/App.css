@@ -17,7 +17,7 @@ input:focus {
     /*flex-direction: column;*/
     margin: 100px auto;
     background-color: transparent;
-    width: fit-content;
+    min-width: fit-content;
     border-radius: 50px;
     box-shadow: 20px 20px 60px #d99898,
     -20px -20px 60px #ffcece;

@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType} from './App';
+import {AddItemForm} from "./components/itemForm/AddItemForm";
 
 export type TaskType = {
     id: string
@@ -21,9 +22,6 @@ export type PropsType = {
 
 export function Todolist(props: PropsType) {
 
-    let [title, setTitle] = useState("")
-    let [error, setError] = useState<string | null>(null)
-
     let tasksForTodolist = props.tasks;
     if (props.filter === "active") {
         tasksForTodolist = props.tasks.filter(t => t.isDone === false);
@@ -33,32 +31,14 @@ export function Todolist(props: PropsType) {
         console.log(tasksForTodolist)
     }
 
-    const addTask = () => {
-        if (title.trim() !== "") {
-            props.addTask(props.todolistId, title.trim());
-            setTitle("");
-        } else {
-            setError("Title is required");
-        }
-    }
-
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.currentTarget.value)
-    }
-
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null);
-        if (e.charCode === 13) {
-            addTask();
-        }
+    const addTask = (title: string) => {
+        props.addTask(props.todolistId, title)
     }
 
     const onAllClickHandler = () => props.changeFilter(props.todolistId, "all");
     const onActiveClickHandler = () => props.changeFilter(props.todolistId, "active");
     const onCompletedClickHandler = () => props.changeFilter(props.todolistId, "completed");
-
     const removeTodolistHandler = () => {
-        // props.removeTask(props.todolistId)
         props.removeTodoList(props.todolistId)
     }
 
@@ -69,15 +49,7 @@ export function Todolist(props: PropsType) {
                     {props.title}
                     <button onClick={removeTodolistHandler}>X</button>
                 </h3>
-                <div>
-                    <input value={title}
-                           onChange={onChangeHandler}
-                           onKeyPress={onKeyPressHandler}
-                           className={error ? "error" : ""}
-                    />
-                    <button onClick={addTask}>+</button>
-                    {error && <div className="error-message">{error}</div>}
-                </div>
+                <AddItemForm addItem={addTask}/>
             </div>
             <ul>
             {
