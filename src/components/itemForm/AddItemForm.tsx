@@ -1,4 +1,9 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import Button from '@mui/material/Button';
+import s from './AddItemForm.module.css'
+import TextField from '@mui/material/TextField';
+import {IconButton} from "@mui/material";
+import {AddBox} from "@mui/icons-material";
 
 export type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -17,11 +22,9 @@ export const AddItemForm = (props:AddItemFormPropsType) => {
             setError("Title is required");
         }
     }
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
-
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null);
         if (e.charCode === 13) {
@@ -29,15 +32,40 @@ export const AddItemForm = (props:AddItemFormPropsType) => {
         }
     }
 
+    const buttonStyle = {
+        maxWidth: '60px',
+        maxHeight: '30px',
+        minWidth: '60px',
+        minHeight: '30px',
+        outline:'1px solid pink',
+        fontsize: '5px'
+    }
+
     return (
         <div>
-            <input value={title}
-                   onChange={onChangeHandler}
-                   onKeyPress={onKeyPressHandler}
-                   className={error ? "error" : ""}
+            <TextField id="standard-basic"
+                       variant="standard"
+                       value={title}
+                       onChange={onChangeHandler}
+                       onKeyPress={onKeyPressHandler}
+                       error={!!error}
+                       label={'Title'}
+                       helperText={error}
+                       // className={error ? "error" : ""}
             />
-            <button onClick={addTask}>+</button>
-            {error && <div className="error-message">{error}</div>}
+            {/*<input value={title}*/}
+            {/*       onChange={onChangeHandler}*/}
+            {/*       onKeyPress={onKeyPressHandler}*/}
+            {/*       className={error ? "error" : ""}*/}
+            {/*/>*/}
+            <IconButton
+                color={'primary'}
+                onClick={addTask}
+                // style={buttonStyle}
+            >
+                <AddBox/>
+            </IconButton>
+            {/*{error && <div className="error-message">{error}</div>}*/}
         </div>
     );
 };

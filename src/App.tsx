@@ -3,6 +3,15 @@ import './App.css';
 import {Todolist, TaskType} from "./Todoolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./components/itemForm/AddItemForm";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+
+
 
 export type FilterValuesType = "all" | "active" | "completed";
 export type TodolistsType = {
@@ -39,9 +48,7 @@ function App() {
 
     let todolistId1 = v1();
     let todolistId2 = v1();
-    // let todolistId3 = v1();
-    // let todolistId4 = v1();
-    // let todolistId5 = v1();
+
 
     let [todolists, setTodolists] = useState<Array<TodolistsType>>([
         {id: todolistId1, title: "What to learn"},
@@ -141,6 +148,23 @@ function App() {
 
     return (
         <div className="App">
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        News
+                    </Typography>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
             <AddItemForm addItem={addTodoList}/>
             {mappedList}
         </div>
