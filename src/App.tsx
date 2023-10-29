@@ -26,19 +26,6 @@ type inTaskType = {
     [key: string]: TasksType
 }
 
-// function TodoList(props: {
-//     filter: FilterValuesType,
-//     removeTask: (todolistId: string, tasksId: string) => void,
-//     checkedTask: (todolistId: string, taskId: string, checked: boolean) => void,
-//     todolistId: string,
-//     changeFilter: (todolistId: string, filter: FilterValuesType) => void,
-//     title: string,
-//     tasks: DataType[],
-//     addTask: (todolistId: string, title: string) => void
-// }) {
-//     return null;
-// }
-
 function App() {
 
     let todolistId1 = v1();
@@ -48,9 +35,6 @@ function App() {
     let [todolists, setTodolists] = useState<Array<TodolistsType>>([
         {id: todolistId1, title: "What to learn"},
         {id: todolistId2, title: "What to buy"}
-        // {id: todolistId3, title: "What to see"},
-        // {id: todolistId4, title: "What to see"},
-        // {id: todolistId5, title: "What to see"}
     ])
     let [tasks, setTasks] = useState<inTaskType>({
         [todolistId1]: {
