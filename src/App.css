@@ -1,48 +1,28 @@
 
 body {
-    background-color: rgba(83, 99, 165, 0.06);
+    background-color: rgb(255 245 248 / 36%);
     display: flex;
+    flex-direction: column;
+    align-content: stretch;
     justify-content: center;
     box-sizing: border-box;
     margin: 0;
 }
-/*input:focus {*/
-/*    outline: none;*/
-/*    border: 1px solid #d99898;*/
-/*    background-color: #ffd4d426;*/
-/*}*/
 
 .App {
-    /*padding: 30px;*/
     padding-top: 0;
     display: flex;
-    /*flex-direction: column;*/
-    /*margin: 100px auto;*/
     background-color: transparent;
-    /*min-width: fit-content;*/
     border-radius: 50px;
-    /*box-shadow: 20px 20px 60px #d99898,*/
-    /*-20px -20px 60px #ffcece;*/
     flex-wrap: wrap;
 
-    /*position: relative;*/
+
 
     & h3 {
         color: #993b5d;
-        font-family: "Oleo Script", sans-serif;
+        font-family: "Marcellus", sans-serif;
         font-size: 1.5rem;
     }
-
-    /*& button {*/
-    /*    background-color: transparent;*/
-    /*    border: 1px solid rgba(217, 152, 152, 0);*/
-    /*    margin: 3px;*/
-    /*    padding: 4px 8px;*/
-    /*    border-radius: 8px;*/
-    /*    box-shadow: 2px 1px 3px 0px #876d6d29,*/
-    /*    inset -14px 7px 15px 0px #ffd9d987;*/
-    /*    color: #993b5d;*/
-    /*}*/
 }
 
 img {
@@ -61,7 +41,7 @@ img {
     align-content: center;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 15px;
+    /*margin: 15px;*/
     color: #993b5d;
     padding: 62px;
     background-color: transparent;
@@ -80,25 +60,14 @@ img {
 
   & li {
        list-style: none;
+      font-family: "Marcellus", sans-serif;
    }
 }
 
-/*div input {*/
-/*    background-color: #ffd4d4;*/
-/*    border: none;*/
-/*    border-radius: 4px;*/
-/*    color: #993b5d;*/
-/*}*/
 .todolist {
     margin-left: 10px;
 }
-/*.active-filter {*/
-/*    background-color: transparent;*/
-/*    border: 1px solid #993b5d;*/
-/*    box-shadow: 2px 1px 3px 0 #876d6d29,*/
-/*    inset -14px 7px 15px 0 #ffd9d987;*/
-/*    color: #993b5d;*/
-/*}*/
+
 .error {
     border: red 1px solid;
 }

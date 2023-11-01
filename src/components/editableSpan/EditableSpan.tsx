@@ -25,15 +25,7 @@ export const EditableSpan = (props:EditableSpanPropsType) => {
         const value = e.currentTarget.value
         setValue(value)
     }
-// const activateEditMode = () => {
-//     setEditMode(true)
-//     setValue(props.title)
-// }
-//
-// const activateViewMode = () => {
-//     setEditMode(false)
-//     props.onChange(inputValue)
-// }
+
     return (
         <>
             {editMode
@@ -45,11 +37,7 @@ export const EditableSpan = (props:EditableSpanPropsType) => {
                            onChange={onChangeHandler}
                            onBlur={onBlurHandler}
                            autoFocus/>
-                // <input value={inputValue}
-                //         onChange={onChangeHandler}
-                //         onBlur={onBlurHandler}
-                //         autoFocus
-                // />
+              
                 :<span onDoubleClick={onDoubleClickHandler}>{props.title}</span>
             }
         </>

@@ -37,8 +37,15 @@ export const AddItemForm = (props:AddItemFormPropsType) => {
         maxHeight: '30px',
         minWidth: '60px',
         minHeight: '30px',
-        outline:'1px solid pink',
-        fontsize: '5px'
+        // outline:'1px solid pink',
+        fontsize: '5px',
+        color: '#e79595'
+    }
+
+    const inputStyle = {
+        color: '#e79595',
+        outline: 'pink',
+        borderBottom: 'pink'
     }
 
     return (
@@ -46,26 +53,20 @@ export const AddItemForm = (props:AddItemFormPropsType) => {
             <TextField id="standard-basic"
                        variant="standard"
                        value={title}
+                       style={inputStyle}
                        onChange={onChangeHandler}
                        onKeyPress={onKeyPressHandler}
                        error={!!error}
                        label={'Title'}
                        helperText={error}
-                       // className={error ? "error" : ""}
             />
-            {/*<input value={title}*/}
-            {/*       onChange={onChangeHandler}*/}
-            {/*       onKeyPress={onKeyPressHandler}*/}
-            {/*       className={error ? "error" : ""}*/}
-            {/*/>*/}
             <IconButton
                 color={'primary'}
                 onClick={addTask}
-                // style={buttonStyle}
+                style={buttonStyle}
             >
                 <AddBox/>
             </IconButton>
-            {/*{error && <div className="error-message">{error}</div>}*/}
         </div>
     );
 };

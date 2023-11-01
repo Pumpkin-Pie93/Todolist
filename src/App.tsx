@@ -111,7 +111,8 @@ function App() {
     let mappedList = todolists.map(el => {
         return (
             <Grid item>
-                <Paper style={{padding: '10px'}}>
+                <Paper style={{padding: '1px', borderRadius:
+                '50px', marginLeft:'10px'}}>
                     <Todolist
                         key={el.id}
                         todolistId={el.id}

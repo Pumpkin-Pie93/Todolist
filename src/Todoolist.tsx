@@ -55,6 +55,17 @@ export function Todolist(props: PropsType) {
     }
     const changeTodoListTitle = (newTitle: string) => props.changeTodolistTitle(props.todolistId, newTitle)
 
+    const buttonStyle = {
+        color: 'deepPink',
+        border: '1px solid pink',
+        backgroundColor: 'rgba(231,149,149,0.12)',
+        // hover: 'rgba(231,149,149,0.12)',
+        // active: {
+        //     color: "green"
+        // }
+    }
+
+
     return (
         <div className={'todolistWrapper'}>
                     <div className={'titleHead'}>
@@ -109,19 +120,19 @@ export function Todolist(props: PropsType) {
                     <div>
                         <Button className={props.filter === 'all' ? "active-filter" : ""}
                                 onClick={onAllClickHandler}
-                                color={"primary"}
+                                style={buttonStyle}
                                 variant={props.filter === 'all' ? "contained" : "outlined"}
                         >All
                         </Button>
                         <Button className={props.filter === 'active' ? "active-filter" : ""}
                                 onClick={onActiveClickHandler}
-                                color={"secondary"}
+                                style={buttonStyle}
                                 variant={props.filter === 'active' ? "contained" : "outlined"}
                         >Active
                         </Button>
                         <Button className={props.filter === 'completed' ? "active-filter" : ""}
                                 onClick={onCompletedClickHandler}
-                                color={"success"}
+                                style={buttonStyle}
                                 variant={props.filter === 'completed' ? "contained" : "outlined"}
                         >Completed
                         </Button>
