@@ -1,11 +1,6 @@
 import {TodolistsType} from "../App";
 import {v1} from "uuid";
 
-// type ActionType = {
-//     type: string
-//     [key: string]: any
-// }
-
 export type RemovetodolistActionType = { // типизируем каждый экшн где тип это ключ для свича (должен совпадать точь в точь) и параметры, приодящие в функцию
     type: 'REMOVE-TODOLIST'
     todolistId: string
