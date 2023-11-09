@@ -7,7 +7,14 @@ import {AppBarForTodoLists} from "./components/appBar/AppBarForTodoLists";
 import {Container, Paper} from "@mui/material";
 import Grid from '@mui/material/Grid';
 import {AddtodolistAC, ChangetodolistTitleAC, RemoveTodolistAC, todoListReducer} from "./state/todolists-reducer";
-import {AddTaskAC, ChangeCheckedTaskAC, ChangeFilterAC, RemoveTaskAC, tasksReducer} from "./state/tasksReducer";
+import {
+    AddTaskAC, AddTodoListAC,
+    ChangeCheckedTaskAC,
+    ChangeFilterAC,
+    ChangeTaskTitleAC,
+    RemoveTaskAC,
+    tasksReducer
+} from "./state/tasksReducer";
 
 
 export type FilterValuesType = "all" | "active" | "completed";
@@ -28,16 +35,11 @@ export type inTaskType = {
     [key: string]: TasksType
 }
 
-function App() {
+  function App()
+  {
 
     let todolistId1 = v1();
     let todolistId2 = v1();
-
-
-    // let [todolists, setTodolists] = useState<Array<TodolistsType>>([
-    //     {id: todolistId1, title: "What to learn"},
-    //     {id: todolistId2, title: "What to buy"}
-    // ])
 
     let [todolists, dispatchTodolists] = useReducer(todoListReducer,[
         {id: todolistId1, title: "What to learn"},
@@ -65,7 +67,10 @@ function App() {
             ],
             filter: "all"
         }
-    });
+
+  });
+
+
 
 
     const removeTask = (todolistId: string, tasksId: string) => {
@@ -106,8 +111,10 @@ function App() {
         delete tasks[todolistId]
     }
     const addTodoList = (title: string) => {
-        let newTodoListId = v1()
-        dispatchTodolists(AddtodolistAC(title, newTodoListId))
+        const action = AddTodoListAC(title)
+        dispatchTodolists(action)
+        dispatchTasks(action)
+    }
 
         // let newTodoList: TodolistsType = {id: newTodoListId, title: title}
         // setTasks({
@@ -116,7 +123,7 @@ function App() {
         // })
         // setTodolists([newTodoList, ...todolists])
 
-    }
+
 
     const changeTodolistTitle = (todolistId: string, title: string) => {
         // setTodolists(todolists.map(el => el.id === todolistId ? {...el, title} : el))
@@ -125,6 +132,7 @@ function App() {
     }
     const changeTaskTitle = (todolistId: string, taskId: string, title: string) => {
         // setTasks({...tasks, [todolistId]: {...tasks[todolistId], data: tasks[todolistId].data.map(el => el.id === taskId ? {...el, title} : el)}})
+        dispatchTasks(ChangeTaskTitleAC(todolistId,taskId,title))
     }
 
     let mappedList = todolists.map(el => {
