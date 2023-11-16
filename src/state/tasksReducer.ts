@@ -19,7 +19,7 @@ type AddTaskAT = {
     }
 }
 type AddEmptyTaskAT = {
-    type: "EMPTY_TASKS"
+    type: "REMOVE-TODOLIST"
     payload: {
         todolistId: string
     }
@@ -47,14 +47,6 @@ type ChangeTaskTitleAT = {
         title: string
     }
 }
-// type AddTodolistAT = {
-//     type: "ADD_TODOLIST"
-//     payload: {
-//         todolistId: string
-//         title: string
-//     }
-// }
-
 type AllActionsType =
     RemoveTaskAT
     | AddTaskAT
@@ -62,8 +54,7 @@ type AllActionsType =
     | ChangeFilterAT
     | ChangeTaskTitleAT
     | AddEmptyTaskAT
-    // | AddTodolistAT
-    |AddtodolistActionType
+    | AddtodolistActionType
 
 export const tasksReducer = (tasks: inTaskType, action: AllActionsType): inTaskType => {
     switch (action.type) {
@@ -78,9 +69,6 @@ export const tasksReducer = (tasks: inTaskType, action: AllActionsType): inTaskT
             }
         case "ADD_TASK":
             let newTask = {id: v1(), title: action.payload.title, isDone: false};
-            //  let stateCopy = {...tasks}
-            //  let tasksCopy = stateCopy[action.payload.todolistId]
-            // let newTasks = {newTask, }
             return {
                 ...tasks,
                 [action.payload.todolistId]: {
@@ -90,13 +78,8 @@ export const tasksReducer = (tasks: inTaskType, action: AllActionsType): inTaskT
             }
         case "ADD-TODOLIST": {
             const stateCopy = {...tasks};
-            stateCopy[action.todolistId] = {data:[], filter: 'all'};
+            stateCopy[action.todolistId] = {data: [], filter: 'all'};
             return stateCopy
-            // ...tasks,
-            // [action.payload.todolistId]: {
-            //     ...tasks[action.payload.todolistId],
-            //     data: [newTask, ...tasks[action.payload.todolistId].data]
-            // }
         }
 
         case "CHECKED_TASK":
@@ -126,9 +109,10 @@ export const tasksReducer = (tasks: inTaskType, action: AllActionsType): inTaskT
                             : el)
                     }
             }
-        case "EMPTY_TASKS":
+        case "REMOVE-TODOLIST":
+            delete tasks[action.payload.todolistId]
             return {
-                ...tasks, [action.payload.todolistId]: {data: [], filter: 'all'}
+                ...tasks
             }
         default:
             return tasks
@@ -139,10 +123,10 @@ export const RemoveTaskAC = (todolistId: string, tasksId: string): RemoveTaskAT 
     return {type: "REMOVE_TASK", payload: {todolistId, tasksId}} as const
 }
 
-export const AddTaskAC = (todolistId: string,title: string ): AddTaskAT => {
-    return {type: "ADD_TASK", payload: {todolistId,title}} as const
+export const AddTaskAC = (todolistId: string, title: string): AddTaskAT => {
+    return {type: "ADD_TASK", payload: {todolistId, title}} as const
 }
-export const AddTodoListAC = ( title: string): AddtodolistActionType => {
+export const AddTodoListAC = (title: string): AddtodolistActionType => {
     return {type: 'ADD-TODOLIST', title, todolistId: v1()} as const
 }
 export const ChangeCheckedTaskAC = (todolistId: string, taskId: string, checked: boolean): ChangeCheckedTaskAT => {
