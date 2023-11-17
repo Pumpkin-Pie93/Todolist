@@ -19,8 +19,9 @@ export type AllActionsType = RemovetodolistActionType
     | AddtodolistActionType
     | ChangetodolistTitleActionType
 
+let initialState: Array<TodolistsType> = [] //для параметра state мы должны задать значение по дефолту, равное начальному состоянию. Пусть это будут пустые массив
 
-export const todoListReducer = (state: Array<TodolistsType>, action: AllActionsType) => {
+export const todoListReducer = (state: Array<TodolistsType> = initialState, action: AllActionsType) => {
     switch (action.type) {
         case('REMOVE-TODOLIST'):
             // let todolistId = action.todolistId
@@ -33,7 +34,7 @@ export const todoListReducer = (state: Array<TodolistsType>, action: AllActionsT
             return state.map(el => el.id === action.todolistId ? {...el, title: newTodolistTitle} : el)
 
         default:
-            throw new Error('I don\'t understand this type')
+            return state
     }
 
 }
