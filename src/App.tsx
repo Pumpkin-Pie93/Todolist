@@ -85,7 +85,8 @@ export type inTaskType = {
     }
     const removeTodoList = (todolistId: string) => {
         dispatchTodolists(RemoveTodolistAC(todolistId))
-        delete tasks[todolistId]
+        dispatchTasks(RemoveTodolistAC(todolistId))
+        // delete tasks[todolistId]
     }
     const addTodoList = (title: string) => {
         const action = AddTodoListAC(title)

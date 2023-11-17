@@ -8,7 +8,7 @@ import {
     RemoveTaskAC,
     tasksReducer
 } from "./tasksReducer";
-import {ChangetodolistTitleAC, todoListReducer} from "./todolists-reducer";
+import {ChangetodolistTitleAC, RemoveTodolistAC, todoListReducer} from "./todolists-reducer";
 
 
 test('correct task should be removed', ()=> {
@@ -204,3 +204,41 @@ test('correct todolist should change its name', () => {
 })
 
 
+test('property with todolistId should be deleted', () => {
+
+    let todolistId1 = v1()
+    let todolistId2 = v1()
+
+    const startState : inTaskType = {
+        [todolistId1]: {
+            data: [
+                {id: v1(), title: "HTML", isDone: true},
+                {id: v1(), title: "CSS", isDone: true},
+                {id: v1(), title: "JS", isDone: true},
+                {id: v1(), title: "React", isDone: false},
+                {id: v1(), title: "Angular", isDone: false},
+                {id: v1(), title: "Redux", isDone: false}
+            ],
+            filter: "all"
+        },
+        [todolistId2]: {
+            data: [
+                {id: v1(), title: "Milk", isDone: true},
+                {id: v1(), title: "Tomatoes", isDone: true},
+                {id: v1(), title: "Fish", isDone: true},
+                {id: v1(), title: "Butter", isDone: true}
+            ],
+            filter: "all"
+        }
+    }
+
+    const action = RemoveTodolistAC(todolistId2)
+
+    const endState = tasksReducer(startState, action)
+
+
+    const keys = Object.keys(endState)
+
+    expect(keys.length).toBe(1)
+    expect(endState['todolistId2']).not.toBeDefined()
+})

@@ -1,6 +1,6 @@
 import {FilterValuesType, inTaskType} from "../App";
 import {v1} from "uuid";
-import {AddtodolistActionType} from "./todolists-reducer";
+import {AddtodolistActionType, RemovetodolistActionType} from "./todolists-reducer";
 
 
 type RemoveTaskAT = {
@@ -16,12 +16,6 @@ type AddTaskAT = {
         title: string
         todolistId: string
 
-    }
-}
-type AddEmptyTaskAT = {
-    type: "REMOVE-TODOLIST"
-    payload: {
-        todolistId: string
     }
 }
 type ChangeCheckedTaskAT = {
@@ -53,8 +47,8 @@ type AllActionsType =
     | ChangeCheckedTaskAT
     | ChangeFilterAT
     | ChangeTaskTitleAT
-    | AddEmptyTaskAT
     | AddtodolistActionType
+    | RemovetodolistActionType
 
 export const tasksReducer = (tasks: inTaskType, action: AllActionsType): inTaskType => {
     switch (action.type) {
@@ -68,7 +62,7 @@ export const tasksReducer = (tasks: inTaskType, action: AllActionsType): inTaskT
                     }
             }
         case "ADD_TASK":
-            let newTask = {id: v1(), title: action.payload.title, isDone: false};
+            let newTask = {id: action.payload.todolistId, title: action.payload.title, isDone: false};
             return {
                 ...tasks,
                 [action.payload.todolistId]: {
@@ -81,7 +75,6 @@ export const tasksReducer = (tasks: inTaskType, action: AllActionsType): inTaskT
             stateCopy[action.todolistId] = {data: [], filter: 'all'};
             return stateCopy
         }
-
         case "CHECKED_TASK":
             let changeCheckedTask = tasks[action.payload.todolistId].data.find(t => t.id === action.payload.taskId)
             if (changeCheckedTask) {
@@ -97,7 +90,8 @@ export const tasksReducer = (tasks: inTaskType, action: AllActionsType): inTaskT
             }
         case "CHANGE_FILTER":
             return {
-                ...tasks, [action.payload.todolistId]: {...tasks[action.payload.todolistId], filter: action.payload.filter}
+                ...tasks,
+                [action.payload.todolistId]: {...tasks[action.payload.todolistId], filter: action.payload.filter}
             }
         case "CHANGE_TASK_TITLE" :
             return {
@@ -110,10 +104,11 @@ export const tasksReducer = (tasks: inTaskType, action: AllActionsType): inTaskT
                     }
             }
         case "REMOVE-TODOLIST":
-            delete tasks[action.payload.todolistId]
-            return {
-                ...tasks
-            }
+            let tasksCopy = {...tasks}
+             delete tasksCopy[action.todolistId]
+            return tasksCopy
+                // delete tasks[action.todolistId]
+
         default:
             return tasks
     }
@@ -122,7 +117,6 @@ export const tasksReducer = (tasks: inTaskType, action: AllActionsType): inTaskT
 export const RemoveTaskAC = (todolistId: string, tasksId: string): RemoveTaskAT => {
     return {type: "REMOVE_TASK", payload: {todolistId, tasksId}} as const
 }
-
 export const AddTaskAC = (todolistId: string, title: string): AddTaskAT => {
     return {type: "ADD_TASK", payload: {todolistId, title}} as const
 }
@@ -138,3 +132,7 @@ export const ChangeFilterAC = (todolistId: string, filter: FilterValuesType): Ch
 export const ChangeTaskTitleAC = (todolistId: string, taskId: string, title: string): ChangeTaskTitleAT => {
     return {type: "CHANGE_TASK_TITLE", payload: {todolistId, taskId, title}} as const
 }
+//
+// export const RemoveTodolistAC = (todolistId: string): RemovetodolistActionType => { // сщздаем сам экшн
+//     return {type: 'REMOVE-TODOLIST', todolistId} as const
+// }
