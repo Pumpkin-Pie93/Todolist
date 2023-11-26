@@ -106,7 +106,7 @@ export type inTaskType = {
                 <Paper style={{padding: '1px', borderRadius:
                 '50px', marginLeft:'10px'}}>
                     <Todolist
-                        key={el.id}
+                        id={el.id}
                         todolistId={el.id}
                         title={el.title}
                         changeFilter={changeFilter}

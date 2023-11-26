@@ -64,7 +64,8 @@ export const tasksReducer = (tasks: inTaskType = initialState, action: AllAction
                     }
             }
         case "ADD_TASK":
-            let newTask = {id: action.payload.todolistId, title: action.payload.title, isDone: false};
+            //let newTask = {id: action.payload.todolistId, title: action.payload.title, isDone: false};
+            let newTask = {id: v1(), title: action.payload.title, isDone: false};
             return {
                 ...tasks,
                 [action.payload.todolistId]: {
@@ -96,15 +97,28 @@ export const tasksReducer = (tasks: inTaskType = initialState, action: AllAction
                 [action.payload.todolistId]: {...tasks[action.payload.todolistId], filter: action.payload.filter}
             }
         case "CHANGE_TASK_TITLE" :
-            return {
-                ...tasks, [action.payload.todolistId]:
-                    {
-                        ...tasks[action.payload.todolistId],
-                        data: tasks[action.payload.todolistId].data.map(el => el.id === action.payload.taskId
-                            ? {...el, title: action.payload.title}
-                            : el)
-                    }
+            if(tasks[action.payload.todolistId].data) {
+                return {
+                    ...tasks, [action.payload.todolistId]:
+                        {
+                            ...tasks[action.payload.todolistId],
+                            data: tasks[action.payload.todolistId].data.map(el => el.id === action.payload.taskId
+                                ? {...el, title: action.payload.title}
+                                : el)
+                        }
+                }
+            } else {
+                return tasks
             }
+                //     return {
+                // ...tasks, [action.payload.todolistId]:
+                //     {
+                //         ...tasks[action.payload.todolistId],
+                //         data: tasks[action.payload.todolistId].data.map(el => el.id === action.payload.taskId
+                //             ? {...el, title: action.payload.title}
+                //             : el)
+                //     }
+
         case "REMOVE-TODOLIST":
             let tasksCopy = {...tasks}
              delete tasksCopy[action.todolistId]
